@@ -13,8 +13,7 @@ def solutions(board):
     empty_cells = [(i, j) for i in range(9) for j in range(9) if not board[i][j]]
 
     if empty_cells:
-        # find the cell of least options
-        i, j = min(empty_cells, key=lambda coords: len(candidates(board, *coords)))
+        i, j = min(empty_cells, key=lambda cell: len(candidates(board, *cell)))  # cell of least options
 
         for digit in candidates(board, i, j):
             board[i][j] = digit
