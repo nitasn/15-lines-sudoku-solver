@@ -13,12 +13,13 @@ def solutions(board):
     empty_cells = [(i, j) for i in range(9) for j in range(9) if not board[i][j]]
 
     if empty_cells:
+        # find the cell of least options
         i, j = min(empty_cells, key=lambda coords: len(candidates(board, *coords)))
 
         for digit in candidates(board, i, j):
             board[i][j] = digit
             yield from solutions(board)
-            board[i][j] = 0
+            board[i][j] = None
 
     else:
         yield [row[:] for row in board]
